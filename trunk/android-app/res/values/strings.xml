@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Badass of the Week</string>
+	<string name="no_program">No Badass loaded !</string>
+
+	<string name="menu_read_label">Set as read</string>
+	<string name="menu_favorite_label">Set as favorite</string>
+	
+</resources>
