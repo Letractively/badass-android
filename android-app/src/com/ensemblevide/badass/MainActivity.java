@@ -18,7 +18,7 @@ import android.widget.SimpleCursorAdapter;
 
 public class MainActivity extends ListActivity {
 	
-	public static final String EPG_URL	= "http://www.badassoftheweek.com/list.html";
+	public static final String PARSING_URL	= "http://www.badassoftheweek.com/list.html";
 	
 	private SimpleCursorAdapter mAdapter;
 	private Cursor				mCursor;
@@ -45,7 +45,7 @@ public class MainActivity extends ListActivity {
 		mDb = new BadassHandler(this).open();
 
 		UpdateTask updateTask = new UpdateTask();
-		updateTask.execute(EPG_URL);
+		updateTask.execute(PARSING_URL);
 
 	    mCursor = mDb.getAllEntries();
 	    startManagingCursor(mCursor);
