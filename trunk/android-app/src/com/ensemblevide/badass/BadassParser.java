@@ -66,7 +66,6 @@ public class BadassParser {
 		return mBadassEntries;
 	}
 
-	//private String fullRegExp  = "<li class=\"ligneProg\".*>.*<div class=\"heureProg .*>(.*).*(<img.*)?<\\/div>.*<div class=\"contenuProg.*<h3 class=\"couleur(.*)\">(.*)<\\/h3>.*<div (TITLE=\"header=\\[(.*)\\].*body=\\[(.*)\\].*\".*)?>(.*)<br.*\\/>(.*)<br.*\\/>(.*)<br.*\\/>";
 	private String fullRegExp  = "([0-9\\/]*):&nbsp;\\s<a\\shref=\"([^\"]*)\">([^<]*)<\\/a>";
 	private Pattern mPattern;
 	

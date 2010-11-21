@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -17,7 +18,7 @@ public class BadassHandler {
 	private static final String DATABASE_TABLE	= "badass";
 	private static final int DATABASE_VERSION	= 4;
 
-	public static final String STRINGSEPARATOR	= "¤¤¤";
+	public static final String STRINGSEPARATOR	= "ï¿½ï¿½ï¿½";
 	
 		// The index (key) column name for use in where clauses.
 		public static final String KEY_ID		= "_id";
@@ -78,14 +79,15 @@ public class BadassHandler {
 			contentValues.put(KEY_DATE,		mObject.mDate);
 			contentValues.put(KEY_LINK,		mObject.mLink);
 			contentValues.put(KEY_CODE,		mObject.mCode);
-			
+
 			return db.insert(DATABASE_TABLE, null, contentValues);
+
 		}
 		
 		public boolean fillDatabaseWith(List<BadassEntry> pEntries) {
 			boolean value = Boolean.valueOf(false);
-			
-			for (int i = 0; i < pEntries.size(); i++) {
+
+			for (int i = pEntries.size() -1 ; i >= 0 ; i--) {
 				insertEntry(pEntries.get(i));
 			}
 
@@ -102,7 +104,7 @@ public class BadassHandler {
 
 		public Cursor getAllEntries () {
 			return db.query(DATABASE_TABLE, ALL_COLUMNS, 
-					null, null, null, null, null);
+					null, null, null, null, KEY_ID + " DESC");
 		}
 
 		public boolean updateEntry(long _rowIndex, BadassEntry _myObject) {
