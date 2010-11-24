@@ -8,6 +8,8 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -44,11 +46,12 @@ public class MainActivity extends ListActivity {
 
 		mDb = new BadassHandler(this).open();
 
-		UpdateTask updateTask = new UpdateTask();
-		updateTask.execute(PARSING_URL);
-
 	    mCursor = mDb.getAllEntries();
 	    startManagingCursor(mCursor);
+	    
+	    if (mCursor.getCount() == 0) {
+			new UpdateTask().execute(PARSING_URL);
+	    }
 	    
 	    // the desired columns to be bound
 	    String[] columns = new String[] { BadassHandler.KEY_DATE ,BadassHandler.KEY_NAME, BadassHandler.KEY_LINK };
@@ -67,7 +70,7 @@ public class MainActivity extends ListActivity {
 		Intent i = new Intent(MainActivity.this, BadassActivity.class);
 		 
 		Bundle objetbunble = new Bundle();
-		//objetbunble.putString(BadassActivity.BADASS_NAME,badassCursor.getString(BadassHandler.NAME_COLUMN));
+		objetbunble.putString(BadassActivity.BADASS_NAME,badassCursor.getString(BadassHandler.NAME_COLUMN));
 		objetbunble.putString(BadassActivity.BADASS_LINK,badassCursor.getString(BadassHandler.LINK_COLUMN));
 		i.putExtras(objetbunble);
 		 
@@ -83,6 +86,25 @@ public class MainActivity extends ListActivity {
 		super.onDestroy();
 	}
 	
+	
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.main_menu, menu);
+	    return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected (MenuItem item){
+		switch (item.getItemId()){
+		case R.id.update_badass:
+			new UpdateTask().execute(PARSING_URL);
+		return true;
+		}
+		return false;
+	}
+
 	public static final int MENU_READ_ID		= 1;
 	public static final int MENU_FAVORITE_ID	= 2;
 
