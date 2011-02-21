@@ -1,6 +1,10 @@
-package com.ensemblevide.badass;
+package fr.slvn.badass;
 
 import java.util.List;
+
+import fr.slvn.badass.tools.BadassEntry;
+import fr.slvn.badass.tools.BadassHandler;
+import fr.slvn.badass.tools.BadassParser;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -100,7 +104,10 @@ public class MainActivity extends ListActivity {
 		switch (item.getItemId()){
 		case R.id.update_badass:
 			new UpdateTask().execute(PARSING_URL);
-		return true;
+			return true;
+		case R.id.about_badass:
+			startActivity(new Intent(MainActivity.this, AboutActivity.class));
+			return true;
 		}
 		return false;
 	}

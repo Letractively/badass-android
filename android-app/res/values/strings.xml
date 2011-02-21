@@ -7,4 +7,15 @@
 	<string name="menu_read_label">Set as read</string>
 	<string name="menu_favorite_label">Set as favorite</string>
 	
+	<string name="main_menu_update">Update</string>
+	<string name="main_menu_about">About...</string>
+	
+	
+	<!--  -->
+	<string name="about_text">All badasses content came from www.badassoftheweek.com edited by Ben Thompson. If you like his work, please consider buying one of his book for more awesomeness !</string>
+	<string name="about_footer">This android application is open source, feel free to do whatever you want about it !</string>
+	
+	<string name="url_badass_book">http://www.amazon.com/gp/product/0061749443</string>
+	<string name="url_badass_legend">http://www.amazon.com/gp/product/0062001353</string>
+
 </resources>
