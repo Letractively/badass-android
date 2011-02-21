@@ -2,10 +2,6 @@ package fr.slvn.badass;
 
 import java.util.List;
 
-import fr.slvn.badass.tools.BadassEntry;
-import fr.slvn.badass.tools.BadassHandler;
-import fr.slvn.badass.tools.BadassParser;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -21,6 +17,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import fr.slvn.badass.tools.BadassEntry;
+import fr.slvn.badass.tools.BadassHandler;
+import fr.slvn.badass.tools.BadassListCursortAdapter;
+import fr.slvn.badass.tools.BadassParser;
 
 public class MainActivity extends ListActivity {
 	
@@ -63,7 +63,7 @@ public class MainActivity extends ListActivity {
 	    int[] to = new int[] { R.id.cell_date, R.id.cell_name, R.id.cell_link};
    
 
-	    mAdapter = new SimpleCursorAdapter(this,R.layout.list_cell, mCursor, columns, to);
+	    mAdapter = new BadassListCursortAdapter(this,R.layout.list_cell, mCursor, columns, to);
 	    setListAdapter(mAdapter);
 	}
 	
@@ -116,18 +116,27 @@ public class MainActivity extends ListActivity {
 	public static final int MENU_FAVORITE_ID	= 2;
 
 	public void  onCreateContextMenu  (ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-		/*
+		
 		AdapterView.AdapterContextMenuInfo info;
 		try {
 		    info = (AdapterView.AdapterContextMenuInfo) menuInfo;
 		} catch (ClassCastException e) {
 		    return;
 		}
-		long id = getListAdapter().getItemId(info.position);
-		*/
-		menu.add(0, MENU_READ_ID,		0, R.string.menu_read_label);
-		menu.add(0, MENU_FAVORITE_ID,	1, R.string.menu_favorite_label);
-
+		long id					= getListAdapter().getItemId(info.position);
+		Cursor badassCursor		= (Cursor) mAdapter.getItem(info.position);
+		int readState			= badassCursor.getInt(BadassHandler.READ_COLUMN);
+		int favoriteState		= badassCursor.getInt(BadassHandler.FAVORITE_COLUMN);
+		
+		if (readState > 0)
+			menu.add(0, MENU_READ_ID,		0, R.string.menu_unread_label);
+		else
+			menu.add(0, MENU_READ_ID,		0, R.string.menu_read_label);
+		
+		if (favoriteState > 0)
+			menu.add(0, MENU_FAVORITE_ID,	1, R.string.menu_unfavorite_label);
+		else
+			menu.add(0, MENU_FAVORITE_ID,	1, R.string.menu_favorite_label);
 	}
 
 	public boolean  onContextItemSelected  (MenuItem item) {
@@ -137,8 +146,22 @@ public class MainActivity extends ListActivity {
 		} catch (ClassCastException e) {
 		    return false;
 		}
-		launchBadassActivity(info.position);
+		Cursor badassCursor = (Cursor) mAdapter.getItem(info.position);
+		int id				= badassCursor.getInt(BadassHandler.ID_COLUMN);
 		
+		switch (item.getItemId()) {
+		case MENU_READ_ID:
+			int readState		= badassCursor.getInt(BadassHandler.READ_COLUMN);
+			int newReadState	= (readState > 0) ? 0: 1;
+			mDb.setRead(id, newReadState);
+			break;
+		case MENU_FAVORITE_ID:
+			int favoriteState		= badassCursor.getInt(BadassHandler.FAVORITE_COLUMN);
+			int newFavoriteState	= (favoriteState > 0) ? 0: 1;
+			mDb.setFavorite(id, newFavoriteState);
+			break;
+		}
+		mCursor.requery();
 		return true;
 	}
 	
