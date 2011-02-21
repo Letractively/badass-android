@@ -14,19 +14,46 @@
          android:layout_marginLeft="10dp"
          android:layout_marginRight="10dp" />
          
+     <TextView android:id="@+id/cell_star"
+         android:textSize="14sp"
+         android:textStyle="bold"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/cell_date"
+         android:gravity="center_vertical"
+         android:layout_marginLeft="5dp"
+         android:layout_marginRight="10dp"
+         android:text="@string/favorite_star"
+         android:textColor="@color/favorite"/>
+    
+    <TextView android:id="@+id/cell_new"
+         android:textSize="14sp"
+         android:textStyle="bold"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/cell_date"
+         android:layout_toRightOf="@+id/cell_star"
+         android:gravity="center_vertical"
+         android:layout_marginLeft="10dp"
+         android:layout_marginRight="10dp"
+         android:text="@string/list_new"
+         android:textColor="@color/new_unread"/>
+         
      <TextView android:id="@+id/cell_name"
          android:textSize="16sp"
          android:textStyle="bold"
          android:textColor="#60BEE7"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content" 
-         android:layout_toRightOf="@id/cell_date" />
+         android:layout_toRightOf="@id/cell_date"
+         android:lines="1" />
          
 	<TextView android:id="@+id/cell_link"
          android:textSize="10sp"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:layout_below="@+id/cell_name"
-         android:layout_toRightOf="@id/cell_date" />
+         android:layout_toRightOf="@id/cell_date"
+         android:lines="1" />
                
 </RelativeLayout>

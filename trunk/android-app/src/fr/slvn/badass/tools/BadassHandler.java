@@ -2,12 +2,10 @@ package fr.slvn.badass.tools;
 
 import java.util.List;
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -23,6 +21,7 @@ public class BadassHandler {
 	
 		// The index (key) column name for use in where clauses.
 		public static final String KEY_ID		= "_id";
+		public static final int	ID_COLUMN		= 0;
 
 		// The name and column index of each column in your database.
 		public static final String KEY_NAME		= "_name"; 
@@ -111,6 +110,22 @@ public class BadassHandler {
 		public boolean updateEntry(long _rowIndex, BadassEntry _myObject) {
 			// TODO: Create a new ContentValues based on the new object
 			// and use it to update a row in the database.
+			return true;
+		}
+		
+		public boolean setFavorite(int _id, int newState)
+		{
+			ContentValues values = new ContentValues(1);
+			values.put(KEY_FAVORITE, newState);
+			db.update(DATABASE_TABLE, values, KEY_ID + "=" + _id, null);
+			return true;
+		}
+		
+		public boolean setRead(int _id, int newState)
+		{
+			ContentValues values = new ContentValues(1);
+			values.put(KEY_READ, newState);
+			db.update(DATABASE_TABLE, values, KEY_ID + "=" + _id, null);
 			return true;
 		}
 		

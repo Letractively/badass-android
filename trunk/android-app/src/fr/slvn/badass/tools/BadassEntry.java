@@ -1,5 +1,7 @@
 package fr.slvn.badass.tools;
 
+import android.text.Html;
+
 public class BadassEntry {
 	
 	int mId;
