@@ -1,4 +1,4 @@
-package com.ensemblevide.badass;
+package fr.slvn.badass.tools;
 
 import android.app.Service;
 import android.content.Intent;

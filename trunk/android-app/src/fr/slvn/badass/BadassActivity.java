@@ -1,4 +1,4 @@
-package com.ensemblevide.badass;
+package fr.slvn.badass;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -44,12 +44,8 @@ public class BadassActivity extends Activity {
 			}
 		});
 
-
-
 		webview.loadUrl(checkUrl(badassLink));
-
 	}
-
 
 
 	private String urlStart		= "http://";

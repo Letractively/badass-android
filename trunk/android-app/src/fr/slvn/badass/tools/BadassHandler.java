@@ -1,6 +1,7 @@
-package com.ensemblevide.badass;
+package fr.slvn.badass.tools;
 
 import java.util.List;
+
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -16,7 +17,7 @@ public class BadassHandler {
 	
 	private static final String DATABASE_NAME	= "badass.db";
 	private static final String DATABASE_TABLE	= "badass";
-	private static final int DATABASE_VERSION	= 4;
+	private static final int DATABASE_VERSION	= 5;
 
 	public static final String STRINGSEPARATOR	= "���";
 	
@@ -112,7 +113,7 @@ public class BadassHandler {
 			// and use it to update a row in the database.
 			return true;
 		}
-
+		
 		private static class myDbHelper extends SQLiteOpenHelper {
 
 			public myDbHelper(Context context, String name, 
