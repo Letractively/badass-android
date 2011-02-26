@@ -16,10 +16,15 @@
 	<string name="list_new">new</string>
 	
 	<!--  -->
-	<string name="about_text">All badasses content came from www.badassoftheweek.com edited by Ben Thompson. If you like his work, please consider buying one of his book for more awesomeness !</string>
+	<string name="about_text">Badass of the week expose you the story of the most badasses people in Ages ! This application is a simple tool helping you to keep tracks of your readings, set favorite or share stuff to your friends.\n\nAll the content came from www.badassoftheweek.com edited by Ben Thompson.\nIf you like his work, please consider buying one of his book for more awesomeness !</string>
 	<string name="about_footer">This android application is open source, feel free to do whatever you want about it !</string>
 	
 	<string name="url_badass_book">http://www.amazon.com/gp/product/0061749443</string>
 	<string name="url_badass_legend">http://www.amazon.com/gp/product/0062001353</string>
+
+
+	<string name="status_no_data">No data... :( i can haz does nothing...</string>
+	<string name="status_io_ex">IOException ! Please turn Internet ON.</string>
+	<string name="status_parse_ex">OMG, corrupted data, ask your ISP!</string>
 
 </resources>
