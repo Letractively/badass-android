@@ -20,7 +20,7 @@ import android.widget.SimpleCursorAdapter;
 import fr.slvn.badass.tools.BadassEntry;
 import fr.slvn.badass.tools.BadassHandler;
 import fr.slvn.badass.tools.BadassListCursortAdapter;
-import fr.slvn.badass.tools.BadassParser;
+import fr.slvn.badass.tools.BadassListParser;
 
 public class MainActivity extends ListActivity {
 	
@@ -29,6 +29,8 @@ public class MainActivity extends ListActivity {
 	private SimpleCursorAdapter mAdapter;
 	private Cursor				mCursor;
 	private BadassHandler		mDb;
+	
+	private boolean testing		= true;
 	
 
 	/** Called when the activity is first created. */
@@ -114,6 +116,7 @@ public class MainActivity extends ListActivity {
 
 	public static final int MENU_READ_ID		= 1;
 	public static final int MENU_FAVORITE_ID	= 2;
+	public static final int MENU_TEST			= 9;
 
 	public void  onCreateContextMenu  (ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
 		
@@ -137,6 +140,9 @@ public class MainActivity extends ListActivity {
 			menu.add(0, MENU_FAVORITE_ID,	1, R.string.menu_unfavorite_label);
 		else
 			menu.add(0, MENU_FAVORITE_ID,	1, R.string.menu_favorite_label);
+		
+		if (testing)
+			menu.add(0, MENU_TEST,			1, "Test");
 	}
 
 	public boolean  onContextItemSelected  (MenuItem item) {
@@ -160,6 +166,15 @@ public class MainActivity extends ListActivity {
 			int newFavoriteState	= (favoriteState > 0) ? 0: 1;
 			mDb.setFavorite(id, newFavoriteState);
 			break;
+		case MENU_TEST:
+
+			Intent i = new Intent(MainActivity.this, Badass2Activity.class);
+			Bundle objetbunble = new Bundle();
+			objetbunble.putString(Badass2Activity.BADASS_NAME,badassCursor.getString(BadassHandler.NAME_COLUMN));
+			objetbunble.putString(Badass2Activity.BADASS_LINK,badassCursor.getString(BadassHandler.LINK_COLUMN));
+			i.putExtras(objetbunble);
+			startActivity(i);
+			break;
 		}
 		mCursor.requery();
 		return true;
@@ -177,7 +192,7 @@ public class MainActivity extends ListActivity {
 		protected Integer doInBackground(String... arg0) {
 			
 			//mDb.removeAllEntries();
-			List<BadassEntry> entries = new BadassParser(arg0[0]).parse();
+			List<BadassEntry> entries = new BadassListParser(arg0[0]).parse();
 			mDb.fillDatabaseWith(entries);
 			
 			return entries.size();

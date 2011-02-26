@@ -13,6 +13,7 @@
         </activity>
         
         <activity android:name=".BadassActivity" android:label="@string/app_name" />
+        <activity android:name=".Badass2Activity" android:label="@string/app_name" />
         <activity android:name=".AboutActivity" android:label="@string/app_name" />
 
     </application>
