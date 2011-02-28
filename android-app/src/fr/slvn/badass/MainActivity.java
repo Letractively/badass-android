@@ -21,6 +21,7 @@ import fr.slvn.badass.tools.BadassEntry;
 import fr.slvn.badass.tools.BadassHandler;
 import fr.slvn.badass.tools.BadassListCursortAdapter;
 import fr.slvn.badass.tools.BadassListParser;
+import fr.slvn.badass.tools.FileManager;
 
 public class MainActivity extends ListActivity {
 	
@@ -29,9 +30,6 @@ public class MainActivity extends ListActivity {
 	private SimpleCursorAdapter mAdapter;
 	private Cursor				mCursor;
 	private BadassHandler		mDb;
-	
-	private boolean testing		= true;
-	
 
 	/** Called when the activity is first created. */
 	@Override
@@ -67,17 +65,20 @@ public class MainActivity extends ListActivity {
 
 	    mAdapter = new BadassListCursortAdapter(this,R.layout.list_cell, mCursor, columns, to);
 	    setListAdapter(mAdapter);
+	    
+	    
+	    FileManager.INSTANCE.init();
 	}
 	
 	
 	private void launchBadassActivity(int position) {
 		Cursor badassCursor = (Cursor) mAdapter.getItem(position);
 		
-		Intent i = new Intent(MainActivity.this, BadassActivity.class);
+		Intent i = new Intent(MainActivity.this, Badass2Activity.class);
 		 
 		Bundle objetbunble = new Bundle();
-		objetbunble.putString(BadassActivity.BADASS_NAME,badassCursor.getString(BadassHandler.NAME_COLUMN));
-		objetbunble.putString(BadassActivity.BADASS_LINK,badassCursor.getString(BadassHandler.LINK_COLUMN));
+		objetbunble.putString(Badass2Activity.BADASS_NAME,badassCursor.getString(BadassHandler.NAME_COLUMN));
+		objetbunble.putString(Badass2Activity.BADASS_LINK,badassCursor.getString(BadassHandler.LINK_COLUMN));
 		i.putExtras(objetbunble);
 		 
 		startActivity(i);
@@ -91,9 +92,7 @@ public class MainActivity extends ListActivity {
 			mDb.close();
 		super.onDestroy();
 	}
-	
-	
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();
@@ -126,7 +125,7 @@ public class MainActivity extends ListActivity {
 		} catch (ClassCastException e) {
 		    return;
 		}
-		long id					= getListAdapter().getItemId(info.position);
+		//long id					= getListAdapter().getItemId(info.position);
 		Cursor badassCursor		= (Cursor) mAdapter.getItem(info.position);
 		int readState			= badassCursor.getInt(BadassHandler.READ_COLUMN);
 		int favoriteState		= badassCursor.getInt(BadassHandler.FAVORITE_COLUMN);
@@ -141,8 +140,8 @@ public class MainActivity extends ListActivity {
 		else
 			menu.add(0, MENU_FAVORITE_ID,	1, R.string.menu_favorite_label);
 		
-		if (testing)
-			menu.add(0, MENU_TEST,			1, "Test");
+		//if (testing)
+		//	menu.add(0, MENU_TEST,			1, "Test");
 	}
 
 	public boolean  onContextItemSelected  (MenuItem item) {

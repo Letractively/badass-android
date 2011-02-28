@@ -6,14 +6,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import fr.slvn.badass.tools.BadassEntry.Builder;
-
-import android.util.Log;
 
 public class BadassParser {
 
