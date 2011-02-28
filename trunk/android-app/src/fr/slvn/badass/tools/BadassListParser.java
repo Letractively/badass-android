@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import fr.slvn.badass.tools.BadassEntry.Builder;
-
 import android.util.Log;
 
 public class BadassListParser {
@@ -68,12 +66,11 @@ public class BadassListParser {
 		return mBadassEntries;
 	}
 
-	private String fullRegExp  = "([0-9\\/]*):&nbsp;\\s<a\\shref=\"([^\"]*)\">([^<]*)<\\/a>";
-	private Pattern mPattern;
+	private String fullRegExp	= "([0-9\\/]*):&nbsp;\\s<a\\shref=\"([^\"]*)\">([^<]*)<\\/a>";
+	private Pattern mPattern	= Pattern.compile(fullRegExp);
 	
 	private void parseBadass(String string) {
 		Log.i("BADASS",string);
-		mPattern = Pattern.compile(fullRegExp);
 		BadassEntry entry = parser(mPattern, mPattern.matcher(string));
 		if (entry != null) {
 			//Log.i("BADASS", entry.toString());
