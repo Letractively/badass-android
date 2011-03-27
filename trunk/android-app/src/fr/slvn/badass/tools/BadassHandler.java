@@ -84,11 +84,16 @@ public class BadassHandler {
 
 		}
 		
-		public boolean fillDatabaseWith(List<BadassEntry> pEntries) {
+		public boolean fillDatabaseWith(List<BadassEntry> pEntries)
+		{
 			boolean value = Boolean.valueOf(false);
 
-			for (int i = pEntries.size() -1 ; i >= 0 ; i--) {
-				insertEntry(pEntries.get(i));
+			for (int i = pEntries.size() -1 ; i >= 0 ; i--)
+			{
+				if (insertEntry(pEntries.get(i)) == -1)
+				{
+					break;
+				}
 			}
 
 			return value;
