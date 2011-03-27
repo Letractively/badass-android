@@ -23,6 +23,9 @@ public class BadassEntry {
 	
 	public static class Builder {
 		
+		//
+		private static String http = "http://";
+		
 		// 
 		private int		mId;
 		private String	mName;
@@ -50,7 +53,13 @@ public class BadassEntry {
 
 		
 		public BadassEntry build() 
-			{ return new BadassEntry(this); }
+		{
+			if (this.mLink.startsWith(http))
+			{
+				return null;
+			}
+			return new BadassEntry(this);
+		}
 	}
 
 	public String toString() {

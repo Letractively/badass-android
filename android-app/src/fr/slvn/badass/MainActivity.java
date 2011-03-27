@@ -74,11 +74,11 @@ public class MainActivity extends ListActivity {
 	private void launchBadassActivity(int position) {
 		Cursor badassCursor = (Cursor) mAdapter.getItem(position);
 		
-		Intent i = new Intent(MainActivity.this, Badass2Activity.class);
+		Intent i = new Intent(MainActivity.this, BadassActivity.class);
 		 
 		Bundle objetbunble = new Bundle();
-		objetbunble.putString(Badass2Activity.BADASS_NAME,badassCursor.getString(BadassHandler.NAME_COLUMN));
-		objetbunble.putString(Badass2Activity.BADASS_LINK,badassCursor.getString(BadassHandler.LINK_COLUMN));
+		objetbunble.putString(BadassActivity.BADASS_NAME,badassCursor.getString(BadassHandler.NAME_COLUMN));
+		objetbunble.putString(BadassActivity.BADASS_LINK,badassCursor.getString(BadassHandler.LINK_COLUMN));
 		i.putExtras(objetbunble);
 		 
 		startActivity(i);
@@ -167,10 +167,10 @@ public class MainActivity extends ListActivity {
 			break;
 		case MENU_TEST:
 
-			Intent i = new Intent(MainActivity.this, Badass2Activity.class);
+			Intent i = new Intent(MainActivity.this, BadassActivity.class);
 			Bundle objetbunble = new Bundle();
-			objetbunble.putString(Badass2Activity.BADASS_NAME,badassCursor.getString(BadassHandler.NAME_COLUMN));
-			objetbunble.putString(Badass2Activity.BADASS_LINK,badassCursor.getString(BadassHandler.LINK_COLUMN));
+			objetbunble.putString(BadassActivity.BADASS_NAME,badassCursor.getString(BadassHandler.NAME_COLUMN));
+			objetbunble.putString(BadassActivity.BADASS_LINK,badassCursor.getString(BadassHandler.LINK_COLUMN));
 			i.putExtras(objetbunble);
 			startActivity(i);
 			break;
