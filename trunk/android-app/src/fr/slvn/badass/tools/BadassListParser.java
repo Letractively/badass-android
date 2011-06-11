@@ -15,10 +15,15 @@ import android.util.Log;
 
 public class BadassListParser {
 	
-	private static int DATE_GROUP		= 1;
-	private static int LINK_GROUP		= 2;
-	private static int NAME_GROUP		= 3;
+	private final int DATE_GROUP		= 1;
+	private final int LINK_GROUP		= 2;
+	private final int NAME_GROUP		= 3;
 
+	private final String START_PARSE	= "<font size=+1>";
+	private final String STOP_PARSE	= "<br><center>";
+	
+	private final String ENTRY_HINT	= "href";
+	
 	String mDate;
 	String mLink;
 	String mName;
@@ -47,12 +52,12 @@ public class BadassListParser {
 			boolean flag1 = false;
 			while ((line = reader.readLine()) != null) {
 				line = line.trim();
-				if (!flag1 && line.contains("<font size=+1>"))
+				if (!flag1 && line.contains(START_PARSE))
 					flag1 = true;
-				if (flag1 && line.contains("<br><center>"))
+				if (flag1 && line.contains(STOP_PARSE))
 					break;
 				if (flag1) {
-					if (line.contains("href")) {
+					if (line.contains(ENTRY_HINT)) {
 						parseBadass(line);	
 					}
 				}
@@ -66,8 +71,8 @@ public class BadassListParser {
 		return mBadassEntries;
 	}
 
-	private String fullRegExp	= "([0-9\\/]*):&nbsp;\\s<a\\shref=\"([^\"]*)\">([^<]*)<\\/a>";
-	private Pattern mPattern	= Pattern.compile(fullRegExp);
+	private final String fullRegExp	= "([0-9\\/]*):&nbsp;\\s<a\\shref=\"([^\"]*)\">([^<]*)<\\/a>";
+	private final Pattern mPattern	= Pattern.compile(fullRegExp);
 	
 	private void parseBadass(String string) {
 		Log.i("BADASS",string);
