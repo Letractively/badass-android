@@ -50,7 +50,7 @@ public class BadassActivity extends Activity
 		getWindow().requestFeature(Window.FEATURE_PROGRESS);
 	    requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
-		setContentView(R.layout.badass2);
+		setContentView(R.layout.badass);
 
 		String badassName =	getIntent().getExtras().getString(BADASS_NAME);
 		String badassLink =	getIntent().getExtras().getString(BADASS_LINK);

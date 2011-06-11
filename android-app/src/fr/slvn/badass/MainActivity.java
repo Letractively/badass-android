@@ -103,10 +103,10 @@ public class MainActivity extends ListActivity {
 	@Override
 	public boolean onOptionsItemSelected (MenuItem item){
 		switch (item.getItemId()){
-		case R.id.update_badass:
+		case R.id.main_menu_update:
 			new UpdateTask().execute(PARSING_URL);
 			return true;
-		case R.id.about_badass:
+		case R.id.main_menu_about:
 			startActivity(new Intent(MainActivity.this, AboutActivity.class));
 			return true;
 		}

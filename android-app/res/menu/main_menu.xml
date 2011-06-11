@@ -2,7 +2,19 @@
 <menu
   xmlns:android="http://schemas.android.com/apk/res/android">
   
-	<item android:id="@+id/update_badass" android:title="@string/main_menu_update" />
-	<item android:id="@+id/about_badass" android:title="@string/main_menu_about" />
+	<item
+		android:id="@+id/main_menu_update"
+		android:title="@string/main_menu_update"
+		android:icon="@drawable/ic_menu_update" />
+		
+	<item
+		android:id="@+id/main_menu_clear_cache"
+		android:title="@string/main_clear_cache"
+		android:icon="@drawable/ic_menu_clear_cache" />
+
+	<item
+		android:id="@+id/main_menu_about"
+		android:title="@string/main_menu_about"
+		android:icon="@drawable/ic_menu_about" />
 
 </menu>
