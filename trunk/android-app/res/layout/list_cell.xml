@@ -5,55 +5,78 @@
      android:layout_width="fill_parent"
      android:layout_height="fill_parent">
      
-     <TextView android:id="@+id/cell_date"
-         android:textSize="14sp"
-         android:textStyle="bold"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:gravity="center_vertical"
-         android:layout_marginLeft="10dp"
-         android:layout_marginRight="10dp" />
-         
-     <TextView android:id="@+id/cell_star"
-         android:textSize="14sp"
-         android:textStyle="bold"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_below="@+id/cell_date"
-         android:gravity="center_vertical"
-         android:layout_marginLeft="5dp"
-         android:layout_marginRight="10dp"
-         android:text="@string/favorite_star"
-         android:textColor="@color/favorite"/>
-    
-    <TextView android:id="@+id/cell_new"
-         android:textSize="14sp"
-         android:textStyle="bold"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_below="@+id/cell_date"
-         android:layout_toRightOf="@+id/cell_star"
-         android:gravity="center_vertical"
-         android:layout_marginLeft="10dp"
-         android:layout_marginRight="10dp"
-         android:text="@string/list_new"
-         android:textColor="@color/new_unread"/>
-         
+     
      <TextView android:id="@+id/cell_name"
          android:textSize="16sp"
          android:textStyle="bold"
-         android:textColor="#60BEE7"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content" 
-         android:layout_toRightOf="@id/cell_date"
-         android:lines="1" />
+         android:textColor="@color/cell_name"
+         android:layout_marginLeft="5dp"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+	     android:layout_alignParentTop="true"
+         android:gravity="center_vertical"
+         android:lines="1"
+         android:text="@string/dummy_name"/>
          
-	<TextView android:id="@+id/cell_link"
+	<TextView android:id="@+id/cell_date"
          android:textSize="10sp"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
+         android:gravity="center_vertical"
+         android:layout_alignLeft="@id/cell_name"
+         android:layout_below="@id/cell_name"
+         android:text="@string/dummy_date"/>
+         
+	<TextView android:id="@+id/cell_new"
+         android:textSize="10sp"
+         android:textStyle="bold"
+         android:layout_marginLeft="5dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
          android:layout_below="@+id/cell_name"
-         android:layout_toRightOf="@id/cell_date"
-         android:lines="1" />
-               
+         android:layout_toRightOf="@+id/cell_date"
+         android:gravity="center_vertical"
+         android:text="@string/list_new"
+         android:textColor="@color/new_unread"/>
+
+	<TextView android:id="@+id/cell_star"
+         android:textSize="10sp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignTop="@id/cell_date"
+         android:layout_alignParentRight="true"
+         android:layout_alignWithParentIfMissing="true"
+         android:gravity="center_vertical"
+         android:layout_marginRight="5dp"
+         android:text="@string/favorite_star"
+         android:textColor="@color/favorite"/>
+         
+   	<ProgressBar android:id="@+id/cell_progressbar"
+   		 android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_toLeftOf="@id/cell_star"
+         android:layout_alignTop="@id/cell_star"
+         style="@android:style/Widget.ProgressBar.Small"
+         android:minWidth="11dip"
+         android:maxWidth="11dip"
+         android:minHeight="11dip"
+         android:maxHeight="11dip"
+         android:layout_marginRight="5dp"
+         android:layout_below="@id/cell_name"
+         android:visibility="gone">
+    </ProgressBar>
+         
+    <TextView android:id="@+id/cell_state"
+         android:textSize="10sp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_toLeftOf="@id/cell_star"
+         android:layout_alignTop="@id/cell_star"
+         android:layout_alignWithParentIfMissing="true"
+         android:gravity="center_vertical"
+         android:layout_marginRight="5dp"
+         android:text="@string/entry_cached"
+         android:textColor="@color/entry_cached"
+         android:visibility="gone"/>
+    
 </RelativeLayout>

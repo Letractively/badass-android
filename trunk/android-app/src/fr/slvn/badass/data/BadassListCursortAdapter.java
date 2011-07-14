@@ -1,4 +1,4 @@
-package fr.slvn.badass.tools;
+package fr.slvn.badass.data;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -19,8 +19,6 @@ public class BadassListCursortAdapter extends SimpleCursorAdapter {
 		super(context, layout, c, from, to);
 		mInflater = LayoutInflater.from(context); 
 	}
-
-
 
 	@Override
 	public View newView(Context context, Cursor c, ViewGroup parent) {
@@ -44,9 +42,6 @@ public class BadassListCursortAdapter extends SimpleCursorAdapter {
 		
 		TextView nameCell = (TextView) view.findViewById(R.id.cell_name);
 		nameCell.setText(cursor.getString(BadassHandler.NAME_COLUMN));
-		
-		TextView linkCell = (TextView) view.findViewById(R.id.cell_link);
-		linkCell.setText(cursor.getString(BadassHandler.LINK_COLUMN));
 		
 		View newView		= view.findViewById(R.id.cell_new);
 		View favoriteView	= view.findViewById(R.id.cell_star);

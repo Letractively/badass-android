@@ -1,4 +1,4 @@
-package fr.slvn.badass.tools;
+package fr.slvn.badass.parser;
 
 import java.io.BufferedReader;
 import java.io.IOException;

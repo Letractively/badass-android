@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+	
+
+	<!-- Entry Attributes -->
+	<color name="cell_name">#FF60BEE7</color>
 	<color name="favorite">#FFFFFF00</color>
 	<color name="new_unread">#FFFF0000</color>
+	
+	<!-- Entry state -->
+	<color name="entry_cached">#FF808080</color>
+	
 </resources>
