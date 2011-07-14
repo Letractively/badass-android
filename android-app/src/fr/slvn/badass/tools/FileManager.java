@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -52,7 +53,7 @@ public enum FileManager {
 	
 	public boolean isFileCached(String fileName)
 	{
-		File f = new File(mExternalDir + mDirectory + mCacheDirectory + fileName);
+		File f = new File(getFilePath(fileName));
 		return f.exists();
 	}
 	
@@ -63,7 +64,7 @@ public enum FileManager {
 	
 	public boolean downloadFileFromInternet(String fileName, String urlPath)
 	{
-		File f = new File(mExternalDir + mDirectory + mCacheDirectory + fileName);
+		File f = new File(getFilePath(fileName));
 		if (f.exists())
 		{
 			return true;
@@ -133,6 +134,19 @@ public enum FileManager {
 					e.printStackTrace();
 				}
 		    return contents.toString();
+		}
+		return null;
+	}
+	
+	public Writer getFileWriterBuffered(String fileName)
+	{
+		FileWriter fstream;
+		try {
+			fstream = new FileWriter(getFilePath(fileName));
+			BufferedWriter out = new BufferedWriter(fstream);
+			return out;
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}

@@ -17,13 +17,13 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import fr.slvn.badass.tools.BadassEntry;
-import fr.slvn.badass.tools.BadassHandler;
-import fr.slvn.badass.tools.BadassListCursortAdapter;
-import fr.slvn.badass.tools.BadassListParser;
+import fr.slvn.badass.data.BadassEntry;
+import fr.slvn.badass.data.BadassHandler;
+import fr.slvn.badass.data.BadassListCursortAdapter;
+import fr.slvn.badass.parser.BadassListParser;
 import fr.slvn.badass.tools.FileManager;
 
-public class MainActivity extends ListActivity {
+public class MainActivity2 extends ListActivity {
 	
 	public static final String PARSING_URL	= "http://www.badassoftheweek.com/list.html";
 	
@@ -74,7 +74,7 @@ public class MainActivity extends ListActivity {
 	private void launchBadassActivity(int position) {
 		Cursor badassCursor = (Cursor) mAdapter.getItem(position);
 		
-		Intent i = new Intent(MainActivity.this, BadassActivity.class);
+		Intent i = new Intent(MainActivity2.this, BadassActivity.class);
 		 
 		Bundle objetbunble = new Bundle();
 		objetbunble.putString(BadassActivity.BADASS_NAME,badassCursor.getString(BadassHandler.NAME_COLUMN));
@@ -107,7 +107,7 @@ public class MainActivity extends ListActivity {
 			new UpdateTask().execute(PARSING_URL);
 			return true;
 		case R.id.main_menu_about:
-			startActivity(new Intent(MainActivity.this, AboutActivity.class));
+			startActivity(new Intent(MainActivity2.this, AboutActivity.class));
 			return true;
 		}
 		return false;
@@ -167,7 +167,7 @@ public class MainActivity extends ListActivity {
 			break;
 		case MENU_TEST:
 
-			Intent i = new Intent(MainActivity.this, BadassActivity.class);
+			Intent i = new Intent(MainActivity2.this, BadassActivity.class);
 			Bundle objetbunble = new Bundle();
 			objetbunble.putString(BadassActivity.BADASS_NAME,badassCursor.getString(BadassHandler.NAME_COLUMN));
 			objetbunble.putString(BadassActivity.BADASS_LINK,badassCursor.getString(BadassHandler.LINK_COLUMN));

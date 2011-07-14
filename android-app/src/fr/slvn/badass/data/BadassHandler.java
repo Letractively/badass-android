@@ -1,6 +1,7 @@
-package fr.slvn.badass.tools;
+package fr.slvn.badass.data;
 
 import java.util.List;
+
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -62,7 +63,9 @@ public class BadassHandler {
 	}
 
 	public BadassHandler open() throws SQLException {
-		db = dbHelper.getWritableDatabase();
+		
+		if (db == null || !db.isOpen())
+			db = dbHelper.getWritableDatabase();
 		return this;
 	}
 

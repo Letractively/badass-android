@@ -1,4 +1,4 @@
-package fr.slvn.badass.tools;
+package fr.slvn.badass.data;
 
 
 public class BadassEntry {

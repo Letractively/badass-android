@@ -3,11 +3,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:weightSum="3">
 
     <fragment class="fr.slvn.badass.fragment.EntryListFragment"
             android:id="@+id/entry_list"
-            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:layout_width="0px"
             android:layout_height="fill_parent" />
-               
+
+    <FrameLayout
+    		android:id="@+id/entry_details"
+   			android:layout_weight="2"
+   			android:layout_width="0px"
+   			android:layout_height="fill_parent" />
+    
 </LinearLayout>

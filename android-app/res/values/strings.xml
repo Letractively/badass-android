@@ -17,8 +17,13 @@
 	<string name="badass_menu_read">Set as read</string>
 	<string name="badass_menu_favorite">Set as favorite</string>
 	
+	<!-- Cell strings -->
+	<string name="unfavorite_star">☆</string>
 	<string name="favorite_star">★</string>
 	<string name="list_new">new</string>
+	
+	<!-- Entry state -->
+	<string name="entry_cached">loaded</string>
 	
 	<!--  -->
 	<string name="about_text">Badass of the week expose you the story of the most badasses people in Ages ! This application is a simple tool helping you to keep tracks of your readings, set favorite or share stuff to your friends.\n\nAll the content came from www.badassoftheweek.com edited by Ben Thompson.\nIf you like his work, please consider buying one of his book for more awesomeness !</string>
@@ -31,5 +36,10 @@
 	<string name="status_no_data">No data... :( i can haz does nothing...</string>
 	<string name="status_io_ex">IOException ! Please turn Internet ON.</string>
 	<string name="status_parse_ex">OMG, corrupted data, ask your ISP!</string>
+	
+	
+	<!-- Dummy String -->
+	<string name="dummy_name">Daniel Balavoine</string>
+	<string name="dummy_date">14/01/86</string>
 
 </resources>
