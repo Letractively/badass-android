@@ -13,20 +13,18 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import android.app.Service;
-import android.content.BroadcastReceiver;
+import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.IBinder;
+
 import fr.slvn.badass.data.BadassEntry;
 import fr.slvn.badass.data.BadassHandler;
 import fr.slvn.badass.parser.BadassListParser;
 import fr.slvn.badass.tools.FileManager;
 
-public class DataService extends Service {
+public class DataService extends IntentService {
 
 	// Define parameters
 	private static final String PARSING_URL	= "http://www.badassoftheweek.com/list.html";
@@ -51,64 +49,32 @@ public class DataService extends Service {
 	public static final String	LOAD_ENTRY_NAME			= "load_entry_name";
 	public static final String	LOAD_ENTRY_ID			= "load_entry_id";
 	
-	private BadassHandler		mDb;
-
-	@Override
-	public void onCreate() {
-		super.onCreate();
-
-		// open data handler.
-		mDb = new BadassHandler(this).open();
-
-		registerReceiver();
+	private boolean	mInitiated	= false;
+	
+	private BadassHandler	mDb;
+	
+	public DataService(String name) {
+		super(name);
+		if (!mInitiated)
+		{
+			init(this);
+		}
 	}
 	
-	/**
-	 * Initialization of the Broadcast receiver
-	 */
-	private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			String action = intent.getAction();
-			if (action != null)
-			{
-				handleRequest(intent);
-			}
-		}
-	};
-
-	public void registerReceiver() {
-		// Generate filter
-		IntentFilter filter = new IntentFilter();
-		filter.addAction(ACTION_REFRESH_LIST);
-		filter.addAction(ACTION_LOAD_ENTRY);
-		filter.addAction(ACTION_CLEAN_CACHE);
-
-		registerReceiver(mBroadcastReceiver, filter);
+	public void init(Context context)
+	{
+		mDb = new BadassHandler(context).open();
+		mInitiated = true;
 	}
-
+	
 	@Override
 	public void  onDestroy() {
+		
 		// Close the db handler
 		if (mDb != null)
 			mDb.close();
 		
 		super.onDestroy();
-	}
-
-	private void handleRequest(Intent intent)
-	{
-		String action = intent.getAction();
-		if (action.equals(ACTION_REFRESH_LIST)) {
-			new RefreshList().execute();
-		} else if (action.equals(ACTION_LOAD_ENTRY)) {
-			Bundle	extras 		= intent.getExtras();
-			String	entryName	= extras.getString(LOAD_ENTRY_NAME);
-			int		entryId		= extras.getInt(LOAD_ENTRY_ID);
-			new LoadTextView(entryId).execute(entryName);
-		} else if (action.equals(ACTION_CLEAN_CACHE)) {
-			//TODO clean cache
-		}
 	}
 
 	private class RefreshList extends AsyncTask<Void, Void, Integer>
@@ -241,10 +207,20 @@ public class DataService extends Service {
 			}
 			return null;
 		}
-	}
-
+	} 
+	
 	@Override
-	public IBinder onBind(Intent intent) {
-		return null;
+	protected void onHandleIntent(Intent intent) {
+		String action = intent.getAction();
+		if (action.equals(ACTION_REFRESH_LIST)) {
+			new RefreshList().execute();
+		} else if (action.equals(ACTION_LOAD_ENTRY)) {
+			Bundle	extras 		= intent.getExtras();
+			String	entryName	= extras.getString(LOAD_ENTRY_NAME);
+			int		entryId		= extras.getInt(LOAD_ENTRY_ID);
+			new LoadTextView(entryId).execute(entryName);
+		} else if (action.equals(ACTION_CLEAN_CACHE)) {
+			//TODO clean cache
+		}
 	}
 }
