@@ -42,7 +42,7 @@ public class EntryListFragment extends ListFragment {
 	
 		    mCursor = mDb.getAllEntries();
 		    
-		    if (mCursor.getCount() == 0) {
+		    if (mCursor.getCount() < 1) {
 		    	launchListRefresh();
 		    }
 	
@@ -141,8 +141,12 @@ public class EntryListFragment extends ListFragment {
     
     private void launchListRefresh()
     {
-    	Intent intent	= new Intent(DataService.ACTION_REFRESH_LIST);
-    	boolean result	= sendBroadcast(intent);
+    	Context context = getContext();
+    	if (context != null) {
+    		Intent intent = new Intent(context, DataService.class);
+    		intent.setAction(DataService.ACTION_REFRESH_LIST);
+    		sendBroadcast(intent);
+    	}
     }
     
     private boolean sendBroadcast(Intent intent)
