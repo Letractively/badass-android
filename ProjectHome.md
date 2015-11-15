@@ -1,0 +1,3 @@
+http://www.badassoftheweek.com/ one of the most awesome website.
+
+This application helps you keep tracks on what you already read, favorites, sharing, etc...
